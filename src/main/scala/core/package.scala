@@ -9,4 +9,8 @@ package object core {
 
     aux(i, Map.empty[A, Int])
   }
+
+  def mapcat[A, B](f: A => B, colls: Iterable[A]*): Iterable[B] = {
+    colls.foldLeft(Iterable.empty[B])((acc, a) => acc ++ a.map(f))
+  }
 }
